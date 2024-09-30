@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('especialidad');
             $table->integer('nomina');
-            $table->timestamp('fecha_creacion');
-            $table->timestamp('fecha_actualizacion');
+            $table->timestamps();
         });
     }
 

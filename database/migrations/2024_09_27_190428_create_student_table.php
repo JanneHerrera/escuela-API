@@ -18,8 +18,7 @@ return new class extends Migration
             $table->integer('grado');
             $table->string('grupo');
             $table->string('status');
-            $table->timestamp('fecha_creacion');
-            $table->timestamp('fecha_actualizacion');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('student');
+        Schema::dropIfExists('estudiantes');
     }
 };

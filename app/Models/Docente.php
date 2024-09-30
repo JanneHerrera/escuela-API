@@ -2,15 +2,6 @@
 
 namespace App\Models;
 
-namespace App\Enum;
-
-enum Status: string
-{
-    case R = 'regular';
-    case I = 'irregular';
-    case C = 'condicionado';
-    case P = 'proceso';
-}
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,13 +22,11 @@ class Docente extends Model
 
     use HasFactory;
 
-    protected $table = 'estudiantes';
+    protected $table = 'docentes';
     protected $fillable = [
         'id',
         'nombre',
         'especialidad',
-        'nomina',
-        'fecha_creacion',
-        'fecha_actualizacion'
+        'nomina'
     ];
 }

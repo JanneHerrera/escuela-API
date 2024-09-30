@@ -21,15 +21,17 @@ class Estudiante extends Model
 {
     use HasFactory;
 
-    protected $table = 'estudiante';
+    protected $table = 'estudiantes';
     protected $fillable = [
         'id',
         'nombre',
         'registro',
         'grado',
         'grupo',
-        'status',
-        'fecha_creacion',
-        'fecha_actualizacion'
+        'status'
     ];
+    public function getRouteKeyName(): string
+    {
+        return 'id';
+    }
 }
