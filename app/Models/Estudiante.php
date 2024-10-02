@@ -34,4 +34,9 @@ class Estudiante extends Model
     {
         return 'id';
     }
+
+    public function materias()
+    {
+        return $this->hasMany(Materia::class);
+    }
 }

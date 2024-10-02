@@ -90,7 +90,7 @@ class TeacherController extends Controller
         }
         $validate = Validator::make($request->all(), [
             'nomina' => ['required', 'numeric', 'min:100']
-        ]);
+        ])->validate();
         $data = [
             'message' => 'Docente actualizado correctamente',
             'status' => JsonResponse::HTTP_ACCEPTED

@@ -29,4 +29,9 @@ class Docente extends Model
         'especialidad',
         'nomina',
     ];
+
+    public function materias()
+    {
+        return $this->hasMany(Materia::class);
+    }
 }
