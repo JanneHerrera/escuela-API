@@ -27,6 +27,6 @@ class Docente extends Model
         'id',
         'nombre',
         'especialidad',
-        'nomina'
+        'nomina',
     ];
 }
