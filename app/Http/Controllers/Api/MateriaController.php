@@ -42,6 +42,13 @@ class MateriaController extends Controller
             'docente_id' => $request->docente_id
         ]);
 
+        if (!$materia) {
+            $data = [
+                'message' => 'error al registar la materia',
+                'status' => JsonResponse::HTTP_CONFLICT
+            ];
+            return response()->json($data, JsonResponse::HTTP_CONFLICT);
+        }
         $data = [
             'message' => 'materia creada correctamente',
             'status' => JsonResponse::HTTP_CREATED
@@ -71,7 +78,18 @@ class MateriaController extends Controller
      */
     public function update(Request $request, Materia $materia)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'nombre' => ['sometimes', 'required', 'string'],
+            'id_docente' => ['sometimes', 'required', 'exists:profesores,id']
+        ]);
+        $materia->id_docente = $request->id_docente;
+        $materia->nombre =  $request->nombre;
+        $materia->save();
+        $data = [
+            'message' => 'se actualizo la amteria',
+            'status' => JsonResponse::HTTP_OK
+        ];
+        return response()->json($data, JsonResponse::HTTP_OK);
     }
 
     /**
@@ -79,6 +97,19 @@ class MateriaController extends Controller
      */
     public function destroy(Materia $materia)
     {
-        //
+        if (!$materia) {
+            $data = [
+                'message' => 'no existe materia que desea eliminar',
+                'status' => JsonResponse::HTTP_NO_CONTENT
+            ];
+            return response()->json($data, JsonResponse::HTTP_NO_CONTENT);
+        }
+
+        $materia->delete();
+        $data = [
+            'message' => 'La materia fue eliminada',
+            'status' =>  JsonResponse::HTTP_OK
+        ];
+        return response()->json($data, JsonResponse::HTTP_OK);
     }
 }

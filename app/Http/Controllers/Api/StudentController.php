@@ -139,11 +139,19 @@ class StudentController extends Controller
      */
     public function destroy(Estudiante $estudiante): JsonResponse
     {
+        if (!$estudiante) {
+            $data = [
+                'message' => 'no existe el alumno que deasea eliminar',
+                'status' => JsonResponse::HTTP_NO_CONTENT
+            ];
+
+            return response()->json($data, JsonResponse::HTTP_NO_CONTENT);
+        }
         $estudiante->delete();
         $data = [
             'message' => 'alumno eliminado',
             'student' => $estudiante,
         ];
-        return response()->json($data, JsonResponse::HTTP_ACCEPTED);
+        return response()->json($data, JsonResponse::HTTP_OK);
     }
 }
